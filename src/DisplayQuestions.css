@@ -1,0 +1,45 @@
+.clock {
+    width: 10vh;
+    height: 10vh;
+    border: 2px solid gray;
+    border-radius: 50%;
+    position: relative;
+    margin: 10px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hand {
+    width: 2px;
+    height: 5vh;
+    background-color: gray;
+    position: absolute;
+    top: calc(-2.5%);
+    transform-origin: 50% 100%; /* Ensure rotation around the bottom of the hand */
+    animation: rotate-hand 7s linear forwards;
+}
+
+.round-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers children horizontally in the container */
+    position: fixed; /* Use fixed if you want it always visible at the top of the viewport */
+    top: 1vh; /* Aligns the top edge of the container with the top of the viewport */
+    left: 0; /* Aligns the left edge of the container with the left of the viewport */
+    right: 0; /* Ensures the container extends right to match the viewport width */
+    text-align: center; /* Ensures text inside the container is centered */
+    z-index: 1000; /* Ensures the container stays on top of other content */
+}
+
+
+.round-container h6 {
+    margin: 0;
+    padding: 10px 0;
+}
+
+
+@keyframes rotate-hand {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}

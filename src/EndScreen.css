@@ -1,0 +1,70 @@
+
+.end-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* This centers the children horizontally in the container */
+    justify-content: center; /* This centers the children vertically if needed */
+    text-align: center; /* Ensures text elements are centered as well */
+    margin-top: 5rem; /* Gives top margin */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%; /* Adjust width as necessary */
+    max-width: 600px; /* Maximum width of the container */
+}
+
+
+.end-screen h1 {
+    color: white;
+}
+
+.link-box {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: lightgray;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    min-width: 80%;
+    max-width: 80%; /* Ensure it does not exceed the container width */
+    overflow: hidden; /* Hide overflow */
+    white-space: nowrap; /* Keep the text in a single line */
+    text-overflow: ellipsis;
+}
+
+.link-box:hover {
+    background-color: gray;
+}
+
+.custom-button {
+    margin-top: 30vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: transparent;  /* Transparent background */
+    color: white;  /* White text */
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    border-radius: 20px;  /* Rounded corners for the button if needed */
+}
+
+.button-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;  /* size of the circle */
+    height: 24px;  /* size of the circle */
+    border-radius: 50%;  /* make it round */
+    background-color: gray;  /* black circle */
+    color: #fff;
+    margin-left: 10px;  /* space between text and arrow circle */
+}
+
+.custom-button:focus {
+    outline: none;
+}
+

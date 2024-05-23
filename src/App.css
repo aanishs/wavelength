@@ -1,0 +1,22 @@
+/* Reset margins and paddings */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Full height for the html and body */
+  width: 100%; /* Ensures the width is also full */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;  /* Align children vertically */
+  justify-content: flex-start; /* Align content to the top */
+  height: 100%; /* Ensure root element takes full height */
+  padding-top: 20vh; /* Push content to start 30% from the top */
+}
+
+/* Global styling */
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Arial', sans-serif;
+}

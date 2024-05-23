@@ -1,0 +1,46 @@
+.scoreboard {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    background: rgba(50, 50, 50, 0.8); /* Dark gray with some transparency */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.scoreboard h2 {
+    text-align: center;
+    color: #00aaff;
+    margin-bottom: 20px;
+}
+
+.scoreboard table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.scoreboard th, .scoreboard td {
+    text-align: left;
+    padding: 8px;
+    border-bottom: 1px solid #777; /* Lighter gray line for separation */
+}
+
+.scoreboard th {
+    background-color: #333; /* Darker header background */
+    color: #fff;
+}
+
+.loading, .error {
+    color: #ff4747;
+    font-size: 18px;
+    text-align: center;
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .scoreboard {
+        width: 90%;
+        padding: 10px;
+    }
+}

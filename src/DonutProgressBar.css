@@ -1,0 +1,24 @@
+.circle-one {
+    width: 100px; /* Diameter of the outer circle */
+    height: 100px; /* Diameter of the outer circle */
+    border-radius: 50%; /* Makes the div circular */
+    position: relative; /* Needed for absolute positioning of the inner elements */
+    display: flex; /* Aligns child content (percentage) in the center */
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
+}
+
+.inner-circle {
+    width: 95px;  /* Diameter of the inner circle, making it smaller than the outer circle */
+    height: 95px;  /* Diameter of the inner circle */
+    background-color: black; /* Color of the inner circle, matching the background for the donut effect */
+    border-radius: 50%; /* Makes the inner circle circular */
+    position: absolute; /* Positions the inner circle on top of the outer one */
+}
+
+.percentage {
+    position: absolute; /* Positions the text exactly at the center of the circle */
+    font-size: 1.5em; /* Size of the percentage text */
+    color: white; /* Color of the percentage text */
+    z-index: 1; /* Ensures the text appears above the inner circle */
+}
