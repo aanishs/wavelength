@@ -51,12 +51,6 @@ const Welcome = () => {
             marginBottom: '0.5em',
             fontFamily: 'Helvetica'
         },
-        lambda: {
-            fontFamily: '"Times New Roman", serif', // Specific font for lambda
-        },
-        letterV: {
-            marginLeft: '-0.1em' // Adjust as needed to move V closer to λ
-        },
         inputStyle: {
             maxWidth: '300px',
             margin: 'auto',

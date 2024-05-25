@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useQuestions } from './QuestionsContext';
 import Loading from './Loading';
+import Logo from './Logo';
 
 const Join = () => {
     const [name, setName] = useState('');
@@ -107,13 +108,13 @@ const Join = () => {
 
     return (
         <div className="container text-center mt-5">
-            <h1 style={styleSettings.title}>WAVELENGTH</h1>
+            <h1 style={styleSettings.title}><Logo /></h1>
             <p>You are joining {gameInfo?.playerName}'s game</p>
             <div className="form-group mt-4">
                 <input 
                     type="text" 
                     className="form-control"
-                    placeholder="Your Name" 
+                    placeholder="What name do you go by?" 
                     value={name} 
                     onChange={handleInputChange}
                     style={styleSettings.inputStyle}
@@ -124,6 +125,18 @@ const Join = () => {
                     {loading ? 'Loading...' : 'Play'}
                 </button>
             </div>
+            <div className="line line-one"></div>
+            <div className="line line-two"></div>
+            <div className="line line-three"></div>
+            <div className="line line-four"></div>
+            <div className="line line-five"></div>
+            <div className="line line-six"></div>
+            <div className="line line-seven"></div>
+            <div className="line line-eight"></div>
+            <div className="line line-nine"></div>
+            <div className="line line-ten"></div>
+            <div className="line line-eleven"></div>
+            <div className="line line-twelve"></div>
         </div>
     );
 };

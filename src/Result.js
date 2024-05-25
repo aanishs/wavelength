@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import DonutProgressBar from './DonutProgressBar';
 import Loading from './Loading';
 import { useQuestions } from './QuestionsContext';
+import './Result.css';
 
 const Result = () => {
     const [score, setScore] = useState(-1);
@@ -43,6 +44,17 @@ const Result = () => {
         fetchScore();
     }, [gameId]);
 
+    const buttonStyle = {
+        backgroundColor: 'black',
+        color: 'white',
+        padding: '10px 20px',
+        border: '2px solid gray',
+        borderRadius: '5px',
+        zIndex: '1',
+        position: 'relative',
+        marginTop: '10px'
+    };
+
     if (error) return <div>Error: {error}</div>;
 
     return (
@@ -54,19 +66,22 @@ const Result = () => {
                         <DonutProgressBar percentage={score * 10} />
                     </div>
                 )}
+                <button style={buttonStyle} onClick={() => navigate('/')}>
+                    Play With Your Friends
+                </button>
             </div>
-            <div className="line line-one"></div>
-            <div className="line line-two"></div>
-            <div className="line line-three"></div>
-            <div className="line line-four"></div>
-            <div className="line line-five"></div>
-            <div className="line line-six"></div>
-            <div className="line line-seven"></div>
-            <div className="line line-eight"></div>
-            <div className="line line-nine"></div>
-            <div className="line line-ten"></div>
-            <div className="line line-eleven"></div>
-            <div className="line line-twelve"></div>
+            <div className="r-line r-line-one"></div>
+            <div className="r-line r-line-two"></div>
+            <div className="r-line r-line-three"></div>
+            <div className="r-line r-line-four"></div>
+            <div className="r-line r-line-five"></div>
+            <div className="r-line r-line-six"></div>
+            <div className="r-line r-line-seven"></div>
+            <div className="r-line r-line-eight"></div>
+            <div className="r-line r-line-nine"></div>
+            <div className="r-line r-line-ten"></div>
+            <div className="r-line r-line-eleven"></div>
+            <div className="r-line r-line-twelve"></div>
         </div>
     );
 };
