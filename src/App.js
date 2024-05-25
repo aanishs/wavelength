@@ -13,7 +13,7 @@ import Loading from './Loading';
 import RainbowTimer from './RainbowTimer';
 import { QuestionsProvider, useQuestions } from './QuestionsContext'; 
 import { v4 as uuidv4 } from 'uuid';
-import { initGA, logPageView } from './analytics';
+import { initGA, logPageView } from './Analytics';
 
 const App = () => {
   useEffect(() => {
