@@ -10,6 +10,7 @@ import Join from './Join';
 import Result from './Result';
 import DonutProgressBar from './DonutProgressBar';
 import Loading from './Loading';
+import RainbowTimer from './RainbowTimer';
 import { QuestionsProvider, useQuestions } from './QuestionsContext'; 
 import { v4 as uuidv4 } from 'uuid';
 

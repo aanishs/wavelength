@@ -1,0 +1,52 @@
+
+.logo-container {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    font-family: 'Helvetica', sans-serif; /* Choose a web-safe or custom font for the rest of the text */
+    color: white;
+    font-size: 1em; /* Adjust the size to fit your design */
+}
+
+.logo-circle-one {
+    width: 60px; /* Adjust size to fit within the text line */
+    height: 60px;
+    border-radius: 50%;
+    position: relative;
+    background: conic-gradient(#ea2f86 0%, #f09c0a 15%, #fae000 30%, #93e223 45%, #4070d3 50%, #493c9e 65%, black 80%);
+    margin: -17px; /* Space between the text and the circle */
+}
+
+.logo-inner-circle {
+    position: absolute;
+    width: 57px; /* Slightly smaller to create a border effect */
+    height: 57px;
+    background-color: black;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.logo-text {
+    position: relative; /* Relative positioning for text alignment */
+    display: flex;
+    align-items: center;
+    z-index: 1;  
+}
+
+.letterV
+{
+    margin-left: -5px;
+}
+
+.lambda {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1em;
+    color: white;
+    font-family: 'Times New Roman';
+    z-index: 1;
+}

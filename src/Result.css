@@ -1,0 +1,79 @@
+.line {
+    position: fixed; /* Use fixed or absolute depending on use case */
+    width: 2px; /* Width of the line */
+    height: 100%; /* Full height of the viewport */
+    opacity: 0.5;
+}
+
+.line-one {
+    background-image: linear-gradient(to bottom, #ea2f86 75%, black);
+    height: 18%; 
+    left: 25%; 
+    top: 0;
+}
+.line-two { 
+    background-image: linear-gradient(to bottom, #f09c0a 75%, black);
+    height: 23%;
+    left: 35%; 
+    top: 0;
+}
+.line-three { 
+    background-image: linear-gradient(to bottom, #fae000 75%, black);
+    height: 20%;
+    left: 45%; 
+    top: 0;
+}
+.line-four { 
+    background-image: linear-gradient(to bottom, #93e223 75%, black);
+    height: 24%;
+    left: 55%; 
+    top: 0;
+}
+.line-five { 
+    background-image: linear-gradient(to bottom, #4070d3 75%, black);
+    height: 19%;
+    left: 65%; 
+    top: 0;
+}
+.line-six { 
+    background-image: linear-gradient(to bottom, #493c9e 75%, black);
+    height: 17%;
+    left: 75%; 
+    top: 0;
+}
+.line-seven { 
+    background-image: linear-gradient(to top, #493c9e 65%, black);
+    height: 45%;
+    left: 75%; 
+    bottom: 0;
+}
+.line-eight { 
+    background-image: linear-gradient(to top, #4070d3 65%, black);
+    height: 42%;
+    left: 65%; 
+    bottom: 0;
+}
+.line-nine { 
+    background-image: linear-gradient(to top, #93e223 65%, black);
+    height: 44%;
+    left: 55%; 
+    bottom: 0;
+}
+.line-ten { 
+    background-image: linear-gradient(to top, #fae000 65%, black);
+    height: 40%;
+    left: 45%; 
+    bottom: 0;
+}
+.line-eleven { 
+    background-image: linear-gradient(to top, #f09c0a 65%, black);
+    height: 45%;
+    left: 35%; 
+    bottom: 0;
+}
+.line-twelve { 
+    background-image: linear-gradient(to top, #ea2f86 65%, black);
+    height: 42%;
+    left: 25%; 
+    bottom: 0;
+}

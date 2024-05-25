@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import { useQuestions } from './QuestionsContext';
 import Loading from './Loading';
+import Logo from './Logo';
+import './Welcome.css';
 import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
 
 const Welcome = () => {
@@ -43,10 +45,17 @@ const Welcome = () => {
 
     const styleSettings = {
         title: {
-            fontSize: '3em',
+            fontSize: '2.8em',
             color: 'white',
             textAlign: 'center',
-            marginBottom: '0.5em'
+            marginBottom: '0.5em',
+            fontFamily: 'Helvetica'
+        },
+        lambda: {
+            fontFamily: '"Times New Roman", serif', // Specific font for lambda
+        },
+        letterV: {
+            marginLeft: '-0.1em' // Adjust as needed to move V closer to λ
         },
         inputStyle: {
             maxWidth: '300px',
@@ -60,27 +69,43 @@ const Welcome = () => {
             padding: '10px 20px',
             border: '2px solid gray',
             borderRadius: '5px',
+            zIndex: '1'
         }
     };
 
     return (
-        <div className="container text-center mt-5">
-            <h1 style={styleSettings.title}>WAVELENGTH</h1>
-            <div className="form-group mt-4">
-                <input 
-                    type="text" 
-                    className="form-control"
-                    placeholder="Your Name" 
-                    value={name} 
-                    onChange={handleInputChange}
-                    style={styleSettings.inputStyle}
-                />
+        <div>
+            <div className="container text-center mt-5">
+            <h1 style={styleSettings.title}> <Logo />
+            </h1>
+                <div className="form-group mt-4">
+                    <input 
+                        type="text" 
+                        className="form-control"
+                        placeholder="What name do you go by?" 
+                        value={name} 
+                        onChange={handleInputChange}
+                        style={styleSettings.inputStyle}
+                    />
+                </div>
+                <div className="d-grid gap-2 mt-3" style={{ maxWidth: '300px', margin: 'auto' }}>
+                    <button className="btn btn-secondary btn-lg" type="button" onClick={fetchQuestions} style={styleSettings.buttonStyle} disabled={loading}>
+                        {loading ? 'Loading...' : 'Play'}
+                    </button>
+                </div>
             </div>
-            <div className="d-grid gap-2 mt-3" style={{ maxWidth: '300px', margin: 'auto' }}>
-                <button className="btn btn-secondary btn-lg" type="button" onClick={fetchQuestions} style={styleSettings.buttonStyle} disabled={loading}>
-                    {loading ? 'Loading...' : 'Play'}
-                </button>
-            </div>
+            <div className="line line-one"></div>
+            <div className="line line-two"></div>
+            <div className="line line-three"></div>
+            <div className="line line-four"></div>
+            <div className="line line-five"></div>
+            <div className="line line-six"></div>
+            <div className="line line-seven"></div>
+            <div className="line line-eight"></div>
+            <div className="line line-nine"></div>
+            <div className="line line-ten"></div>
+            <div className="line line-eleven"></div>
+            <div className="line line-twelve"></div>
         </div>
     );
 };

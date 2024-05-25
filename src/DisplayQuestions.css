@@ -1,23 +1,13 @@
-.clock {
-    width: 10vh;
-    height: 10vh;
-    border: 2px solid gray;
-    border-radius: 50%;
-    position: relative;
-    margin: 10px auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.question-container {
+    display: flex;  /* Establishes a flex container */
+    flex-direction: column;  /* Stacks children vertically */
+    align-items: center;  /* Centers children horizontally within the container */
+    justify-content: center;  /* Centers children vertically within the container */
 }
 
-.hand {
-    width: 2px;
-    height: 5vh;
-    background-color: gray;
-    position: absolute;
-    top: calc(-2.5%);
-    transform-origin: 50% 100%; /* Ensure rotation around the bottom of the hand */
-    animation: rotate-hand 7s linear forwards;
+.prompt-title
+{
+    font-size: 12px;
 }
 
 .round-container {
@@ -32,7 +22,6 @@
     z-index: 1000; /* Ensures the container stays on top of other content */
 }
 
-
 .round-container h6 {
     margin: 0;
     padding: 10px 0;
@@ -42,4 +31,41 @@
 @keyframes rotate-hand {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
+}
+
+.q-line-seven { 
+    background-image: linear-gradient(to top, #493c9e 65%, black);
+    height: 25%;
+    left: 75%; 
+    bottom: 0;
+}
+.q-line-eight { 
+    background-image: linear-gradient(to top, #4070d3 65%, black);
+    height: 22%;
+    left: 65%; 
+    bottom: 0;
+}
+.q-line-nine { 
+    background-image: linear-gradient(to top, #93e223 65%, black);
+    height: 24%;
+    left: 55%; 
+    bottom: 0;
+}
+.q-line-ten { 
+    background-image: linear-gradient(to top, #fae000 65%, black);
+    height: 20%;
+    left: 45%; 
+    bottom: 0;
+}
+.q-line-eleven { 
+    background-image: linear-gradient(to top, #f09c0a 65%, black);
+    height: 25%;
+    left: 35%; 
+    bottom: 0;
+}
+.q-line-twelve { 
+    background-image: linear-gradient(to top, #ea2f86 65%, black);
+    height: 22%;
+    left: 25%; 
+    bottom: 0;
 }

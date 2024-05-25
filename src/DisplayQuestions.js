@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuestions } from './QuestionsContext';
 import './DisplayQuestions.css';
 import Loading from './Loading';
+import RainbowTimer from './RainbowTimer';
 import { useNavigate, useParams } from 'react-router-dom';
 
 
@@ -138,29 +139,37 @@ const DisplayQuestions = () => {
             <div className='round-container'>
                 <h6>{roundText}</h6>
             </div>
-        <div className="container text-center mt-5">
-            <h6>Select the first word that comes to your mind when you hear</h6>
-            <h1>{question}</h1>
-            <ClockTimer key={currentQuestionIndex} onTimerEnd={moveToNextQuestion} />
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                {options.map((option, index) => (
-                    <button
-                        key={index}
-                        style={{
-                            backgroundColor: 'black',
-                            color: 'white',
-                            padding: '10px 20px',
-                            border: '2px solid gray',
-                            borderRadius: '5px',
-                            boxShadow: selectedOptionIndex === index ? `0 0 5px 2px ${colors[index]}` : 'none',
-                        }}
-                        onClick={() => handleOptionClick(index)}
-                    >
-                        {option}
-                    </button>
-                ))}
+            <div className="container text-center mt-5">
+                <p className="prompt-title">Select the first word that comes to your mind when you hear</p>
+                <h1>{question}</h1>
+                <div className="question-container"><RainbowTimer key={currentQuestionIndex} onTimerEnd={moveToNextQuestion} /></div>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                    {options.map((option, index) => (
+                        <button
+                            key={index}
+                            style={{
+                                backgroundColor: 'black',
+                                color: 'white',
+                                padding: '10px 20px',
+                                border: '2px solid gray',
+                                borderRadius: '5px',
+                                height: '70px',  // Specify the fixed height
+                                boxShadow: selectedOptionIndex === index ? `0 0 5px 2px ${colors[index]}` : 'none',
+                                zIndex: 1
+                            }}
+                            onClick={() => handleOptionClick(index)}
+                        >
+                            {option}
+                        </button>
+                    ))}
+                </div>
             </div>
-        </div>
+            <div className="line q-line-seven"></div>
+            <div className="line q-line-eight"></div>
+            <div className="line q-line-nine"></div>
+            <div className="line q-line-ten"></div>
+            <div className="line q-line-eleven"></div>
+            <div className="line q-line-twelve"></div>
         </div>
     );
 };

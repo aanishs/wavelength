@@ -1,0 +1,18 @@
+.rt-circle-one {
+    width: 80px; /* Diameter of the outer circle */
+    height: 80px; /* Diameter of the outer circle */
+    border-radius: 50%; /* Makes the div circular */
+    position: relative; /* Needed for absolute positioning of the inner elements */
+    display: flex; /* Aligns child content (percentage) in the center */
+    justify-content: center; /* Centers children horizontally */
+    align-items: center; /* Centers children vertically */
+    margin: 10px auto;
+}
+
+.rt-inner-circle {
+    width: 75px;  /* Diameter of the inner circle, making it smaller than the outer circle */
+    height: 75px;  /* Diameter of the inner circle */
+    background-color: black; /* Color of the inner circle, matching the background for the donut effect */
+    border-radius: 50%; /* Makes the inner circle circular */
+    position: absolute; /* Positions the inner circle on top of the outer one */
+}

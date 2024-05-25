@@ -46,13 +46,27 @@ const Result = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div className="container text-center mt-5">
-            <h3 style={{ marginBottom: '3vh' }}>Your Wavelength Score with {creatorName} is</h3>
-            {score !== -1 && (
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <DonutProgressBar percentage={score * 10} />
-                </div>
-            )}
+        <div>
+            <div className="container text-center mt-5" style={{ whiteSpace: 'pre-line' }}>
+                <h3 style={{ marginBottom: '3vh' }}>Your Wavelength Score <br /> with {creatorName} is</h3>
+                {score !== -1 && (
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <DonutProgressBar percentage={score * 10} />
+                    </div>
+                )}
+            </div>
+            <div className="line line-one"></div>
+            <div className="line line-two"></div>
+            <div className="line line-three"></div>
+            <div className="line line-four"></div>
+            <div className="line line-five"></div>
+            <div className="line line-six"></div>
+            <div className="line line-seven"></div>
+            <div className="line line-eight"></div>
+            <div className="line line-nine"></div>
+            <div className="line line-ten"></div>
+            <div className="line line-eleven"></div>
+            <div className="line line-twelve"></div>
         </div>
     );
 };
