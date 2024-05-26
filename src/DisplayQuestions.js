@@ -5,20 +5,6 @@ import Loading from './Loading';
 import RainbowTimer from './RainbowTimer';
 import { useNavigate, useParams } from 'react-router-dom';
 
-
-const ClockTimer = ({ onTimerEnd }) => {
-    useEffect(() => {
-        const timer = setTimeout(onTimerEnd, 7000);
-        return () => clearTimeout(timer);
-    }, [onTimerEnd]);
-
-    return (
-        <div className="clock">
-            <div className="hand"></div>
-        </div>
-    );
-}
-
 const DisplayQuestions = () => {
     const { questions, userName, questionIds } = useQuestions();
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -27,17 +13,30 @@ const DisplayQuestions = () => {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { gameId } = useParams();
-
     const colors = ['white', 'white', 'white', 'white'];
+
+    useEffect(() => {
+        if (currentQuestionIndex === questions.length - 1 && responses[questions.length - 1] !== 0) {
+            if (gameId === 'new-game') {
+                createGame();
+            } else {
+                logResponse();
+            }
+        }
+    }, [currentQuestionIndex, responses, gameId]);
 
     const handleOptionClick = (optionIndex) => {
         setSelectedOptionIndex(optionIndex);
-        const updatedResponses = [...responses];
-        updatedResponses[currentQuestionIndex] = optionIndex + 1;
-        setResponses(updatedResponses);
-
+    
+        setResponses((prevResponses) => {
+            const updatedResponses = [...prevResponses];
+            updatedResponses[currentQuestionIndex] = optionIndex + 1;
+            return updatedResponses;
+        });
+    
         moveToNextQuestion();
     };
+    
 
     const createGame = async () => {
 
@@ -111,15 +110,6 @@ const DisplayQuestions = () => {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
                 setSelectedOptionIndex(-1);
             }, 200);
-        } else {
-            if (gameId == 'new-game')
-            {
-                createGame();
-            }
-            else
-            {
-                logResponse();
-            }
         }
     };
 
