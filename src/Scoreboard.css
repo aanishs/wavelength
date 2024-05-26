@@ -9,12 +9,6 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
-.scoreboard h2 {
-    text-align: center;
-    color: #00aaff;
-    margin-bottom: 20px;
-}
-
 .scoreboard table {
     width: 100%;
     border-collapse: collapse;
@@ -43,4 +37,49 @@
         width: 90%;
         padding: 10px;
     }
+}
+
+.s-line {
+    position: fixed; /* Use fixed or absolute depending on use case */
+    width: 2px; /* Width of the line */
+    height: 100%; /* Full height of the viewport */
+    opacity: 0.5;
+    z-index: -1;
+}
+
+.s-line-one {
+    background-image: linear-gradient(to bottom, #ea2f86 75%, black);
+    height: 100%; 
+    left: 25%; 
+    top: 0;
+}
+.s-line-two { 
+    background-image: linear-gradient(to bottom, #f09c0a 75%, black);
+    height: 100%;
+    left: 35%; 
+    top: 0;
+}
+.s-line-three { 
+    background-image: linear-gradient(to bottom, #fae000 75%, black);
+    height: 100%;
+    left: 45%; 
+    top: 0;
+}
+.s-line-four { 
+    background-image: linear-gradient(to bottom, #93e223 75%, black);
+    height: 100%;
+    left: 55%; 
+    top: 0;
+}
+.s-line-five { 
+    background-image: linear-gradient(to bottom, #4070d3 75%, black);
+    height: 100%;
+    left: 65%; 
+    top: 0;
+}
+.s-line-six { 
+    background-image: linear-gradient(to bottom, #493c9e 75%, black);
+    height: 100%;
+    left: 75%; 
+    top: 0;
 }

@@ -43,37 +43,45 @@
 }
 .r-line-seven { 
     background-image: linear-gradient(to top, #493c9e 65%, black);
-    height: 40%;
+    height: 38%;
     left: 75%; 
     bottom: 0;
 }
 .r-line-eight { 
     background-image: linear-gradient(to top, #4070d3 65%, black);
-    height: 37%;
+    height: 35%;
     left: 65%; 
     bottom: 0;
 }
 .r-line-nine { 
     background-image: linear-gradient(to top, #93e223 65%, black);
-    height: 39%;
+    height: 37%;
     left: 55%; 
     bottom: 0;
 }
 .r-line-ten { 
     background-image: linear-gradient(to top, #fae000 65%, black);
-    height: 35%;
+    height: 33%;
     left: 45%; 
     bottom: 0;
 }
 .r-line-eleven { 
     background-image: linear-gradient(to top, #f09c0a 65%, black);
-    height: 40%;
+    height: 38%;
     left: 35%; 
     bottom: 0;
 }
 .r-line-twelve { 
     background-image: linear-gradient(to top, #ea2f86 65%, black);
-    height: 37%;
+    height: 35%;
     left: 25%; 
     bottom: 0;
+}
+.score-text {
+    opacity: 0; /* Initial state: text is invisible */
+    transition: opacity 1s ease-in; /* Animation effect over 1 second */
+}
+
+.fade-in {
+    opacity: 1; /* Final state: text is fully visible */
 }

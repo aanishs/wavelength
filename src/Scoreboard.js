@@ -34,27 +34,35 @@ const Scoreboard = () => {
     if (isLoading) return <Loading />;
 
     return (
-        <div className="scoreboard">
-            {players.length > 0 ? (
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Player Name</th>
-                            <th>Score</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {players.map(player => (
-                            <tr key={player.playerID}>
-                                <td>{player.playerName}</td>
-                                <td>{player.score}</td>
+        <div>
+            <div className="scoreboard">
+                {players.length > 0 ? (
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Player Name</th>
+                                <th>Score</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            ) : (
-                <p><center>Looks like no one has played yet.</center></p>
-            )}
+                        </thead>
+                        <tbody>
+                            {players.map(player => (
+                                <tr key={player.playerID}>
+                                    <td>{player.playerName}</td>
+                                    <td>{player.score}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <p><center>Looks like no one has played yet.</center></p>
+                )}
+            </div>
+            <div className="s-line s-line-one"></div>
+            <div className="s-line s-line-two"></div>
+            <div className="s-line s-line-three"></div>
+            <div className="s-line s-line-four"></div>
+            <div className="s-line s-line-five"></div>
+            <div className="s-line s-line-six"></div>
         </div>
     );
 };
