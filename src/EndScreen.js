@@ -10,10 +10,10 @@ const EndScreen = () => {
 
     const handleCopyClick = () => {
         navigator.clipboard.writeText(gameUrl).then(() => {
-            setLinkText("Copied to clipboard!"); // Update text to "Copied to clipboard!"
+            setLinkText("Copied to clipboard!");
             setTimeout(() => {
-                setLinkText(gameUrl); // Reset back to URL after 3 seconds
-            }, 3000);
+                setLinkText(gameUrl);
+            }, 2000);
         });
     };
 

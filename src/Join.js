@@ -62,7 +62,7 @@ const Join = () => {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ gameId: gameId })  // Make sure to send an object with gameId
+                body: JSON.stringify({ gameId: gameId })
             });
             const data = await response.json();
             if (response.ok) {

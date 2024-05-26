@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const ClockTimer = ({ onTimerEnd }) => {
     useEffect(() => {
-        const timer = setTimeout(onTimerEnd, 7000); // 7 seconds for full rotation
+        const timer = setTimeout(onTimerEnd, 7000);
         return () => clearTimeout(timer);
     }, [onTimerEnd]);
 
@@ -109,8 +109,8 @@ const DisplayQuestions = () => {
         if (currentQuestionIndex < questions.length - 1) {
             setTimeout(() => {
                 setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setSelectedOptionIndex(-1); // Reset selection
-            }, 200); // Delay to show selection effect
+                setSelectedOptionIndex(-1);
+            }, 200);
         } else {
             if (gameId == 'new-game')
             {
@@ -153,7 +153,7 @@ const DisplayQuestions = () => {
                                 padding: '10px 20px',
                                 border: '2px solid gray',
                                 borderRadius: '5px',
-                                height: '70px',  // Specify the fixed height
+                                height: '70px',
                                 boxShadow: selectedOptionIndex === index ? `0 0 5px 2px ${colors[index]}` : 'none',
                                 zIndex: 1
                             }}

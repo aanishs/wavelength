@@ -3,8 +3,8 @@ import './RainbowTimer.css';
 
 const RainbowTimer = ({ onTimerEnd }) => {
     const [displayPercentage, setDisplayPercentage] = useState(0);
-    const totalDuration = 7000; // Total duration of 7 seconds
-    const intervalDuration = 10; // Update every 10 milliseconds for smooth animation
+    const totalDuration = 6000;
+    const intervalDuration = 10;
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -12,8 +12,8 @@ const RainbowTimer = ({ onTimerEnd }) => {
                 const nextPercentage = prev + (100 / (totalDuration / intervalDuration));
                 if (nextPercentage >= 100) {
                     clearInterval(interval);
-                    onTimerEnd();  // Call onTimerEnd when the timer reaches or exceeds 100%
-                    return 100; // Ensure the percentage does not exceed 100
+                    onTimerEnd();
+                    return 100;
                 }
                 return nextPercentage;
             });
@@ -23,9 +23,9 @@ const RainbowTimer = ({ onTimerEnd }) => {
     }, [onTimerEnd]);
 
     const getColorForTime = (percentage) => {
-        const index = Math.floor(percentage / (100 / 6)); // There are 6 color changes over 100%
+        const index = Math.floor(percentage / (100 / 6));
         const colors = ['#ea2f86', '#f09c0a', '#fae000', '#93e223', '#4070d3', '#493c9e'];
-        return colors[index] || colors[colors.length - 1]; // Default to the last color if out of range
+        return colors[index] || colors[colors.length - 1];
     };
 
     const getGradient = (displayPercentage) => {

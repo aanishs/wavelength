@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import './Scoreboard.css'; // Make sure to import your new CSS
+import './Scoreboard.css';
 import Loading from './Loading';
 
 const Scoreboard = () => {

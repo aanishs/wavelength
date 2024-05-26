@@ -1,7 +1,7 @@
 .r-line {
-    position: fixed; /* Use fixed or absolute depending on use case */
-    width: 2px; /* Width of the line */
-    height: 100%; /* Full height of the viewport */
+    position: fixed;
+    width: 2px;
+    height: 100%;
     opacity: 0.5;
 }
 
@@ -78,10 +78,10 @@
     bottom: 0;
 }
 .score-text {
-    opacity: 0; /* Initial state: text is invisible */
-    transition: opacity 1s ease-in; /* Animation effect over 1 second */
+    opacity: 0;
+    transition: opacity 1s ease-in;
 }
 
 .fade-in {
-    opacity: 1; /* Final state: text is fully visible */
+    opacity: 1;
 }

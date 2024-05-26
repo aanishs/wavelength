@@ -9,14 +9,14 @@ const DonutProgressBar = ({ percentage }) => {
             const interval = setInterval(() => {
                 setDisplayPercentage(prev => {
                     if (prev < percentage) {
-                        return prev + 1; // Increment the displayed percentage
+                        return prev + 1;
                     } else {
-                        clearInterval(interval); // Stop the interval when the target is reached
+                        clearInterval(interval);
                         return prev;
                     }
                 });
-            }, 20); // Adjust the interval speed to your liking
-            return () => clearInterval(interval); // Clean up the interval on component unmount
+            }, 20);
+            return () => clearInterval(interval);
         }
     }, [percentage]);
 
@@ -38,14 +38,13 @@ const DonutProgressBar = ({ percentage }) => {
         let gradient = colorStops.reduce((acc, stop) => {
             if (displayPercentage >= stop.stop) {
                 acc += `${stop.color} ${stop.stop}%, `;
-            } else if (acc === '') { // This covers the case where the percentage is less than the first stop
+            } else if (acc === '') {
                 acc += `${stop.color} ${displayPercentage}%, black ${displayPercentage}%, black 100%`;
                 return acc;
             }
             return acc;
         }, '');
 
-        // Close the gradient if no black was added (i.e., percentage was >= last stop)
         if (!gradient.includes('black')) {
             gradient += `black ${displayPercentage}%, black 100%`;
         }

@@ -13,7 +13,7 @@ const Result = () => {
     const [fadeText, setFadeText] = useState('');
     const [showFadeText, setShowFadeText] = useState(false);
     const navigate = useNavigate();
-    const { gameId } = useParams(); // Assuming you're using React Router and the gameId is part of the URL
+    const { gameId } = useParams();
 
     useEffect(() => {
         const fetchCreator = async () => {
@@ -42,7 +42,7 @@ const Result = () => {
 
 
         const fetchScore = async () => {
-            const playerId = localStorage.getItem('userId'); // Retrieve userId stored in local storage
+            const playerId = localStorage.getItem('userId');
             if (!playerId || !gameId) {
                 setError('Invalid game or user information');
                 return;

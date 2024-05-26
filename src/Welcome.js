@@ -4,7 +4,7 @@ import { useQuestions } from './QuestionsContext';
 import Loading from './Loading';
 import Logo from './Logo';
 import './Welcome.css';
-import { useNavigate } from 'react-router-dom'; // Use useNavigate instead of useHistory
+import { useNavigate } from 'react-router-dom';
 
 const Welcome = () => {
     const [name, setName] = useState('');
@@ -19,7 +19,7 @@ const Welcome = () => {
     };
 
     const fetchQuestions = async () => {
-        setLoading(true); // Start loading
+        setLoading(true);
         try {
             const response = await fetch('https://6qpujfk4qe.execute-api.us-west-1.amazonaws.com/prod/get-questions', {
                 method: 'GET',
@@ -35,7 +35,7 @@ const Welcome = () => {
         } catch (error) {
             console.error('Failed to fetch questions:', error);
         } finally {
-            setLoading(false); // Stop loading
+            setLoading(false);
         }
     };
 
