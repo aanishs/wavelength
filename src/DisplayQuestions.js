@@ -15,6 +15,15 @@ const DisplayQuestions = () => {
     const { gameId } = useParams();
     const colors = ['white', 'white', 'white', 'white'];
 
+    const shuffleOptions = (options) => {
+        const optionsWithIndices = options.map((option, index) => ({ option, index }));
+        for (let i = optionsWithIndices.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [optionsWithIndices[i], optionsWithIndices[j]] = [optionsWithIndices[j], optionsWithIndices[i]];
+        }
+        return optionsWithIndices;
+    };
+
     useEffect(() => {
         if (currentQuestionIndex === questions.length - 1 && responses[questions.length - 1] !== 0) {
             if (gameId === 'new-game') {
@@ -25,18 +34,15 @@ const DisplayQuestions = () => {
         }
     }, [currentQuestionIndex, responses, gameId]);
 
-    const handleOptionClick = (optionIndex) => {
-        setSelectedOptionIndex(optionIndex);
-    
+    const handleOptionClick = (visualIndex, originalIndex) => {
+        setSelectedOptionIndex(visualIndex);
         setResponses((prevResponses) => {
             const updatedResponses = [...prevResponses];
-            updatedResponses[currentQuestionIndex] = optionIndex + 1;
+            updatedResponses[currentQuestionIndex] = originalIndex + 1;
             return updatedResponses;
         });
-    
         moveToNextQuestion();
     };
-    
 
     const createGame = async () => {
 
@@ -118,6 +124,7 @@ const DisplayQuestions = () => {
     }
 
     const { question, options } = questions[currentQuestionIndex];
+    const shuffledOptions = shuffleOptions(options);
     const roundText = `Wavelength round ${currentQuestionIndex + 1} of ${questions.length}`;
 
     if (loading) {
@@ -134,23 +141,23 @@ const DisplayQuestions = () => {
                 <h1>{question}</h1>
                 <div className="question-container"><RainbowTimer key={currentQuestionIndex} onTimerEnd={moveToNextQuestion} /></div>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                    {options.map((option, index) => (
-                        <button
-                            key={index}
-                            style={{
-                                backgroundColor: 'black',
-                                color: 'white',
-                                padding: '10px 20px',
-                                border: '2px solid gray',
-                                borderRadius: '5px',
-                                height: '70px',
-                                boxShadow: selectedOptionIndex === index ? `0 0 5px 2px ${colors[index]}` : 'none',
-                                zIndex: 1
-                            }}
-                            onClick={() => handleOptionClick(index)}
-                        >
-                            {option}
-                        </button>
+                {shuffledOptions.map(({ option, index }, visualIndex) => (
+                    <button
+                        key={visualIndex}
+                        style={{
+                            backgroundColor: 'black',
+                            color: 'white',
+                            padding: '10px 20px',
+                            border: '2px solid gray',
+                            borderRadius: '5px',
+                            height: '70px',
+                            boxShadow: selectedOptionIndex === visualIndex ? `0 0 10px 2px ${colors[visualIndex]}` : 'none',
+                            zIndex: 1
+                        }}
+                        onClick={() => handleOptionClick(visualIndex, index)}
+                    >
+                        {option}
+                    </button>
                     ))}
                 </div>
             </div>
