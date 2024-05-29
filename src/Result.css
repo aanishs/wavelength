@@ -1,3 +1,18 @@
+.scorecard {
+    color: white;
+    font-family: 'Arial', sans-serif;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    background: rgb(50, 50, 50, 0.8); /* Solid dark gray */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative; /* Needed for z-index to take effect */
+    z-index: 5; /* Adjust this value based on your needs */
+}
+
+
+
 .r-line {
     position: fixed;
     width: 2px;
