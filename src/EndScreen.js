@@ -41,7 +41,7 @@ const EndScreen = () => {
     return (
         <div className="end-screen container text-center mt-5">
             <h1>Thank You for Playing Wavelength!</h1>
-            <p>Share this link with your friends to invite them:</p>
+            <p>Share this link with your friends to find your Wavelength Score with them:</p>
             <div className="link-box" onClick={handleCopyClick}>
                 {linkText}
             </div>
