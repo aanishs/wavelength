@@ -44,20 +44,18 @@ const DisplayQuestions = () => {
         moveToNextQuestion();
     };
 
-    const createGame = async () => {
-
+    const createGame = async (retryCount = 0) => {
         setLoading(true);
-
-        let userId = localStorage.getItem('userId');
     
+        let userId = localStorage.getItem('userId');
         const payload = {
             userId,
             userName,
             questionSet: questionIds,
             answerSet: responses
         };
-
-        console.log (payload);
+    
+        console.log(payload);
     
         try {
             const response = await fetch('https://6qpujfk4qe.execute-api.us-west-1.amazonaws.com/prod/create-game', {
@@ -71,26 +69,33 @@ const DisplayQuestions = () => {
             if (response.ok) {
                 console.log('Game created:', data);
                 navigate(`/endscreen/${data.gameId}`);
+            } else {
+                throw new Error('API response not ok');
             }
         } catch (error) {
-            console.error('Failed to create game:', error);
+            console.error('Attempt to create game failed:', error);
+            if (retryCount < 3) {
+                setTimeout(() => createGame(retryCount + 1), 2000);
+            } else {
+                console.error('Failed to create game after 3 retries:', error);
+            }
+        } finally {
+            setLoading(false);
         }
-    };
+    };    
     
-    const logResponse = async () => {
-
+    const logResponse = async (retryCount = 0) => {
         setLoading(true);
-
-        let playerId = localStorage.getItem('userId');
     
+        let playerId = localStorage.getItem('userId');
         const payload = {
             gameId,
             playerId,
             userName,
             responseSet: responses
         };
-
-        console.log (payload);
+    
+        console.log(payload);
     
         try {
             const response = await fetch('https://6qpujfk4qe.execute-api.us-west-1.amazonaws.com/prod/log-response', {
@@ -104,11 +109,20 @@ const DisplayQuestions = () => {
             if (response.ok) {
                 console.log('Response logged:', data);
                 navigate(`/result/${gameId}`);
+            } else {
+                throw new Error('API response not ok');
             }
         } catch (error) {
-            console.error('Failed to create game:', error);
+            console.error('Attempt to log response failed:', error);
+            if (retryCount < 3) {
+                setTimeout(() => logResponse(retryCount + 1), 2000);
+            } else {
+                console.error('Failed to log response after 3 retries:', error);
+            }
+        } finally {
+            setLoading(false);
         }
-    };
+    };    
 
     const moveToNextQuestion = () => {
         if (currentQuestionIndex < questions.length - 1) {
