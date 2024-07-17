@@ -80,7 +80,7 @@ const DisplayQuestions = () => {
                 console.error('Failed to create game after 3 retries:', error);
             }
         } finally {
-
+            setLoading(false);
         }
     };    
     
