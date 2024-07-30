@@ -119,8 +119,8 @@ const DisplaySpectrum = () => {
         } finally {
 
         }
-    };   
-
+    }; 
+    
     const moveToNextQuestion = () => {
         setResponses((prevResponses) => {
             const updatedResponses = [...prevResponses];
@@ -129,7 +129,7 @@ const DisplaySpectrum = () => {
         });
         if (currentQuestionIndex < questions.length - 1) {
             setTimeout(() => {
-                setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+                setCurrentQuestionIndex(currentQuestionIndex + 1);
                 setSliderValue(50);
             }, 300);
         }
@@ -158,7 +158,6 @@ const DisplaySpectrum = () => {
 
     const thumbColor = calculateThumbColor(sliderValue);
     const { question, options } = questions[currentQuestionIndex];
-    const roundText = `Wavelength round ${currentQuestionIndex + 1} of ${questions.length}`;
     let leftLabel = "True";
     let rightLabel = "False";
     if (options === 'A')
@@ -170,6 +169,12 @@ const DisplaySpectrum = () => {
     {
         leftLabel = "Disagree";
         rightLabel = "Agree";
+    }
+
+    const roundText = `Wavelength round ${currentQuestionIndex + 1} of ${questions.length}`;
+
+    if (questions.length === 0 || currentQuestionIndex >= questions.length) {
+        return <Loading />;
     }
 
     if (loading) {
