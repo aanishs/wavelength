@@ -120,7 +120,7 @@ const DisplayQuestions = () => {
                 console.error('Failed to log response after 3 retries:', error);
             }
         } finally {
-            setLoading(false);
+
         }
     };    
 
