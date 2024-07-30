@@ -4,13 +4,14 @@ import { useQuestions } from './QuestionsContext';
 import Loading from './Loading';
 import Logo from './Logo';
 import './Welcome.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Welcome = () => {
     const [name, setName] = useState('');
     const [loading, setLoading] = useState(false);
     const { storeQuestions } = useQuestions();
     const navigate = useNavigate();
+    const location = useLocation();
     const { setUserName } = useQuestions();
 
     const handleInputChange = (event) => {
@@ -21,14 +22,24 @@ const Welcome = () => {
     const fetchQuestions = async () => {
         setLoading(true);
         try {
-            const response = await fetch('https://6qpujfk4qe.execute-api.us-west-1.amazonaws.com/prod/get-questions', {
+            const mode = location.pathname.split("/")[1];
+            const url = `https://6qpujfk4qe.execute-api.us-west-1.amazonaws.com/prod/get-questions?gametype=${mode}`;
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: { 'Content-Type': 'application/json' },
             });
             const data = await response.json();
             if (response.ok) {
+                console.log(data);
                 storeQuestions(data.questions);
-                navigate('/game/new-game'); 
+                if (mode === "spectrum")
+                {
+                    navigate('/spectrum/game/new-game'); 
+                }
+                else
+                {
+                    navigate('/classic/game/new-game'); 
+                }
             } else {
                 throw new Error('Failed to load questions');
             }
@@ -67,11 +78,32 @@ const Welcome = () => {
         }
     };
 
+    const mode = location.pathname.split("/")[1]; // spectrum or classic
+    const boxText = mode === "spectrum" ? "Classic Edition Spectrum Edition" : "Spectrum Edition Classic Edition";
+    const handleBoxClick = () => {
+        if (mode === "spectrum" )
+        {
+            navigate('/classic'); 
+        }
+        else
+        {
+            navigate('/spectrum'); 
+        }
+    };
+
+    const [firstWord, secondWord, ...rest] = boxText.split(' ');
+
     return (
         <div>
             <div className="container text-center mt-5">
-            <h1 style={styleSettings.title}> <Logo />
-            </h1>
+            <div className="title-container">
+                <h1 style={styleSettings.title}>
+                    <Logo />
+                </h1>
+                <div className="boxStyle" onClick={handleBoxClick}>
+                    <span className="gray-text">{firstWord} {secondWord}</span> {rest.join(' ')}
+                </div>
+            </div>
                 <div className="form-group mt-4">
                     <input 
                         type="text" 

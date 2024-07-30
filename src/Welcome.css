@@ -77,3 +77,22 @@
     left: 25%; 
     bottom: 0;
 }
+.title-container {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+.boxStyle {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    position: absolute;
+    margin-top: -25px;
+    right: 0; /* Align to the right */
+}
+
+.gray-text {
+    color: rgb(101, 100, 100);
+}

@@ -1,28 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { useQuestions } from './QuestionsContext';
 import './DisplayQuestions.css';
-import Loading from './Loading';
 import RainbowTimer from './RainbowTimer';
 import { useNavigate, useParams } from 'react-router-dom';
+import Loading from './Loading';
+import { useQuestions } from './QuestionsContext';
 
-const DisplayQuestions = () => {
+const DisplaySpectrum = () => {
     const { questions, userName, questionIds } = useQuestions();
+    const [sliderValue, setSliderValue] = useState(50); // Initial value in the middle of the slider
+    const [isSliderMoving, setIsSliderMoving] = useState(true); // State to track if the slider is being moved
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [responses, setResponses] = useState(new Array(questions.length).fill(0));
-    const [selectedOptionIndex, setSelectedOptionIndex] = useState(-1);
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { gameId } = useParams();
-    const colors = ['white', 'white', 'white', 'white'];
-
-    const shuffleOptions = (options) => {
-        const optionsWithIndices = options.map((option, index) => ({ option, index }));
-        for (let i = optionsWithIndices.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [optionsWithIndices[i], optionsWithIndices[j]] = [optionsWithIndices[j], optionsWithIndices[i]];
-        }
-        return optionsWithIndices;
-    };
 
     useEffect(() => {
         if (currentQuestionIndex === questions.length - 1 && responses[questions.length - 1] !== 0) {
@@ -34,15 +25,20 @@ const DisplayQuestions = () => {
         }
     }, [currentQuestionIndex, responses, gameId]);
 
-    const handleOptionClick = (visualIndex, originalIndex) => {
-        setSelectedOptionIndex(visualIndex);
-        setResponses((prevResponses) => {
-            const updatedResponses = [...prevResponses];
-            updatedResponses[currentQuestionIndex] = originalIndex + 1;
-            return updatedResponses;
-        });
-        moveToNextQuestion();
+    const handleSliderChange = (event) => {
+        setSliderValue(parseInt(event.target.value, 10));
+        setIsSliderMoving(true);
     };
+
+    const handleSliderStop = () => {
+        setIsSliderMoving(false);
+    };
+
+    useEffect(() => {
+        if (!isSliderMoving) {
+            moveToNextQuestion();
+        }
+    }, [isSliderMoving]);
 
     const createGame = async (retryCount = 0) => {
         setLoading(true);
@@ -52,7 +48,8 @@ const DisplayQuestions = () => {
             userId,
             userName,
             questionSet: questionIds,
-            answerSet: responses
+            answerSet: responses,
+            gameType: "Spectrum"
         };
     
         console.log(payload);
@@ -80,10 +77,10 @@ const DisplayQuestions = () => {
                 console.error('Failed to create game after 3 retries:', error);
             }
         } finally {
-            setLoading(false);
+
         }
     };    
-    
+
     const logResponse = async (retryCount = 0) => {
         setLoading(true);
     
@@ -120,26 +117,60 @@ const DisplayQuestions = () => {
                 console.error('Failed to log response after 3 retries:', error);
             }
         } finally {
-            setLoading(false);
+
         }
-    };    
+    };   
 
     const moveToNextQuestion = () => {
+        setResponses((prevResponses) => {
+            const updatedResponses = [...prevResponses];
+            updatedResponses[currentQuestionIndex] = sliderValue;
+            return updatedResponses;
+        });
         if (currentQuestionIndex < questions.length - 1) {
             setTimeout(() => {
-                setCurrentQuestionIndex(currentQuestionIndex + 1);
-                setSelectedOptionIndex(-1);
-            }, 200);
+                setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+                setSliderValue(50);
+            }, 300);
         }
     };
 
-    if (questions.length === 0) {
-        return <Loading />
-    }
+    const colors = ['#ea2f86', '#f09c0a', '#fae000', '#93e223', '#4070d3', '#493c9e'];
 
+    const interpolateColor = (color1, color2, factor) => {
+        const result = color1.slice(1).match(/.{2}/g)
+            .map((hex, index) => {
+                return Math.round(parseInt(hex, 16) + factor * (parseInt(color2.slice(1).match(/.{2}/g)[index], 16) - parseInt(hex, 16)));
+            });
+        return `rgb(${result.join(',')})`;
+    };
+
+    const calculateThumbColor = (value) => {
+        if (value >= 100) {
+            return colors[colors.length - 1];
+        }
+        const numColors = colors.length;
+        const interval = 100 / (numColors - 1);
+        const index = Math.min(Math.floor(value / interval), numColors - 2);
+        const factor = (value % interval) / interval;
+        return interpolateColor(colors[index], colors[index + 1], factor);
+    };
+
+    const thumbColor = calculateThumbColor(sliderValue);
     const { question, options } = questions[currentQuestionIndex];
-    const shuffledOptions = shuffleOptions(options);
     const roundText = `Wavelength round ${currentQuestionIndex + 1} of ${questions.length}`;
+    let leftLabel = "True";
+    let rightLabel = "False";
+    if (options === 'A')
+    {
+        leftLabel = "Rarely";
+        rightLabel = "Often";
+    }
+    else if (options === 'B')
+    {
+        leftLabel = "Disagree";
+        rightLabel = "Agree";
+    }
 
     if (loading) {
         return <Loading />
@@ -151,28 +182,24 @@ const DisplayQuestions = () => {
                 <h6>{roundText}</h6>
             </div>
             <div className="container text-center mt-5">
-                <p className="prompt-title">Select the first word that comes to your mind when you hear</p>
-                <h1>{question}</h1>
+                <h5 className="fixed-height">{question}</h5>
                 <div className="question-container"><RainbowTimer key={currentQuestionIndex} onTimerEnd={moveToNextQuestion} /></div>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
-                {shuffledOptions.map(({ option, index }, visualIndex) => (
-                    <button
-                        key={visualIndex}
-                        style={{
-                            backgroundColor: 'black',
-                            color: 'white',
-                            padding: '10px 20px',
-                            border: '2px solid gray',
-                            borderRadius: '5px',
-                            height: '70px',
-                            boxShadow: selectedOptionIndex === visualIndex ? `0 0 10px 2px ${colors[visualIndex]}` : 'none',
-                            zIndex: 1
-                        }}
-                        onClick={() => handleOptionClick(visualIndex, index)}
-                    >
-                        {option}
-                    </button>
-                    ))}
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={sliderValue}
+                    onChange={handleSliderChange}
+                    onMouseUp={handleSliderStop}
+                    onTouchEnd={handleSliderStop}
+                    className="slider"
+                    style={{
+                        '--thumb-color': thumbColor
+                    }}
+                />
+                <div className="slider-labels">
+                    <span>{leftLabel}</span>
+                    <span>{rightLabel}</span>
                 </div>
             </div>
             <div className="line q-line-seven"></div>
@@ -185,4 +212,4 @@ const DisplayQuestions = () => {
     );
 };
 
-export default DisplayQuestions;
+export default DisplaySpectrum;

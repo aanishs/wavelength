@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Welcome from './Welcome';
@@ -11,6 +11,7 @@ import Result from './Result';
 import DonutProgressBar from './DonutProgressBar';
 import Loading from './Loading';
 import RainbowTimer from './RainbowTimer';
+import DisplaySpectrum from './DisplaySpectrum';
 import { QuestionsProvider, useQuestions } from './QuestionsContext'; 
 import { v4 as uuidv4 } from 'uuid';
 import { initGA, logPageView } from './Analytics';
@@ -43,8 +44,11 @@ const App = () => {
     <Router>
       <div className="App">
         <Routes>
-          <Route path="/" element={<Welcome />} exact />
-          <Route path="/game/:gameId" element={<DisplayQuestions />} />
+          <Route path="/" element={<Navigate to="/spectrum" />} />
+          <Route path="/spectrum" element={<Welcome />} />
+          <Route path="/classic" element={<Welcome />} />
+          <Route path="/classic/game/:gameId" element={<DisplayQuestions />} />
+          <Route path="/spectrum/game/:gameId" element={<DisplaySpectrum />} />
           <Route path="/endscreen/:gameId" element={<EndScreen />} />
           <Route path="/scoreboard/:gameId" element={<Scoreboard />} />
           <Route path="/join/:gameId" element={<Join />} />

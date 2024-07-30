@@ -6,15 +6,18 @@ const EndScreen = () => {
     const { gameId } = useParams();
     const gameUrl = `https://playwavelength.com/join/${gameId}`;
     const [linkText, setLinkText] = useState(gameUrl);
+    const [isCopied, setIsCopied] = useState(false);
     const navigate = useNavigate();
     const canShare = navigator.canShare;
 
     const handleCopyClick = () => {
         navigator.clipboard.writeText(gameUrl).then(() => {
             setLinkText("Copied to clipboard!");
+            setIsCopied(true);
             setTimeout(() => {
                 setLinkText(gameUrl);
-            }, 2000);
+                setIsCopied(false);
+            }, 1500);
         });
     };
 
@@ -42,7 +45,7 @@ const EndScreen = () => {
         <div className="end-screen container text-center mt-5">
             <h1>Thank You for Playing Wavelength!</h1>
             <p>Share this link with your friends to find your Wavelength Score with them:</p>
-            <div className="link-box" onClick={handleCopyClick}>
+            <div className={`link-box ${isCopied ? 'copied' : ''}`} onClick={handleCopyClick}>
                 {linkText}
             </div>
             {canShare ? (

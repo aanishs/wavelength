@@ -54,7 +54,6 @@ const Join = () => {
     };
 
     const joinGame = async () => {
-        console.log("Joining game with ID: " + gameId);
         setLoading(true);
         try {
             const response = await fetch('https://6qpujfk4qe.execute-api.us-west-1.amazonaws.com/prod/join-game', {
@@ -68,7 +67,14 @@ const Join = () => {
             if (response.ok) {
                 console.log('Game joined:', data);
                 storeQuestions(data.questions);
-                navigate(`/game/${gameId}`);
+                if (data.gameType === "Spectrum")
+                {
+                    navigate(`/spectrum/game/${gameId}`);
+                }
+                else
+                {
+                    navigate(`/classic/game/${gameId}`);
+                }
             } else {
                 throw new Error(`Failed to join game: ${data.message}`);
             }

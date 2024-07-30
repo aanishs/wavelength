@@ -56,7 +56,7 @@ const DonutProgressBar = ({ percentage }) => {
         <div className="circle-one" style={{ background: getGradient(displayPercentage) }}>
             <div className="inner-circle"></div>
             <div className="percentage">
-                {Math.floor(displayPercentage / 10)}
+                {displayPercentage / 10}
             </div>
         </div>
     );

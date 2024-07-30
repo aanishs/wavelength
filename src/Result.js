@@ -77,25 +77,25 @@ const Result = () => {
     }, [gameId]);
 
     useEffect(() => {
-        if (score == 1) {
+        if (Math.round(score) == 1) {
             setFadeText('Opposite Poles Attract!');
-        } else if (score == 2) {
+        } else if (Math.round(score) == 2) {
             setFadeText('Different Beats!');
-        } else if (score == 3) {
+        } else if (Math.round(score) == 3) {
             setFadeText('Merging Paths!');
-        } else if (score == 4) {
+        } else if (Math.round(score) == 4) {
             setFadeText('Bridging Views!');
-        } else if (score == 5) {
+        } else if (Math.round(score) == 5) {
             setFadeText('Syncing Up!');
-        } else if (score == 6) {
+        } else if (Math.round(score) == 6) {
             setFadeText('Getting in Tune!');
-        } else if (score == 7) {
+        } else if (Math.round(score) == 7) {
             setFadeText('Melodic Match!');
-        } else if (score == 8) {
+        } else if (Math.round(score) == 8) {
             setFadeText('In Perfect Rythm!');
-        } else if (score == 9) {
+        } else if (Math.round(score) == 9) {
             setFadeText('Kindred Spirits!');
-        } else if (score == 10) {
+        } else if (Math.round(score) == 10) {
             setFadeText('A Match Made in Heaven!');
         }
         
@@ -151,7 +151,7 @@ const Result = () => {
                 </div>
                 {score !== -1 && (
                     <div className="scorecard">
-                        {scoreExplanations[score]}
+                        {scoreExplanations[Math.round(score)]}
                     </div>
                 )}
                 <button style={buttonStyle} onClick={() => navigate('/')}>
