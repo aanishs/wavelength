@@ -156,6 +156,10 @@ const DisplaySpectrum = () => {
         return interpolateColor(colors[index], colors[index + 1], factor);
     };
 
+    if (questions.length === 0 || currentQuestionIndex >= questions.length) {
+        return <Loading />;
+    }
+
     const thumbColor = calculateThumbColor(sliderValue);
     const { question, options } = questions[currentQuestionIndex];
     let leftLabel = "True";
@@ -172,10 +176,6 @@ const DisplaySpectrum = () => {
     }
 
     const roundText = `Wavelength round ${currentQuestionIndex + 1} of ${questions.length}`;
-
-    if (questions.length === 0 || currentQuestionIndex >= questions.length) {
-        return <Loading />;
-    }
 
     if (loading) {
         return <Loading />

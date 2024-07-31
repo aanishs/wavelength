@@ -3,7 +3,7 @@ import './RainbowTimer.css';
 
 const RainbowTimer = ({ onTimerEnd }) => {
     const [displayPercentage, setDisplayPercentage] = useState(0);
-    const totalDuration = 6000;
+    const totalDuration = 10000;
     const intervalDuration = 10;
 
     useEffect(() => {
@@ -12,15 +12,16 @@ const RainbowTimer = ({ onTimerEnd }) => {
                 const nextPercentage = prev + (100 / (totalDuration / intervalDuration));
                 if (nextPercentage >= 100) {
                     clearInterval(interval);
-                    onTimerEnd();
+                    setTimeout(onTimerEnd, 0); // Ensures it's called outside of the current render phase
                     return 100;
                 }
                 return nextPercentage;
             });
         }, intervalDuration);
-
+    
         return () => clearInterval(interval);
     }, [onTimerEnd]);
+    
 
     const getColorForTime = (percentage) => {
         const index = Math.floor(percentage / (100 / 6));
