@@ -3,6 +3,7 @@
     width: 2px; /* Width of the line */
     height: 100%; /* Full height of the viewport */
     opacity: 0.5;
+    z-index: -1;
 }
 
 .line-one {
