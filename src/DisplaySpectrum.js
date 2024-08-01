@@ -162,8 +162,8 @@ const DisplaySpectrum = () => {
 
     const thumbColor = calculateThumbColor(sliderValue);
     const { question, options } = questions[currentQuestionIndex];
-    let leftLabel = "True";
-    let rightLabel = "False";
+    let leftLabel = "False";
+    let rightLabel = "True";
     if (options === 'A')
     {
         leftLabel = "Rarely";
